@@ -1,0 +1,801 @@
+openapi: 3.0.1
+info:
+  title: api-simuladors-terminis
+  description: Simulador Terminis
+  contact:
+    name: Jose Joaquin de la Gala
+    email: jjgala@minsait.com
+  version: v1
+servers:
+  - url: /
+security:
+  - default: []
+tags:
+  - name: terminis
+paths:
+  /solicitarOficinas:
+    post:
+      tags:
+        - terminis
+      description: Obtenir la llista de conceptes en un idioma determinat.
+      operationId: SolicitarOficinas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/solicitarOficinasInput'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - Envelope
+                type: object
+                properties:
+                  Envelope:
+                    required:
+                      - Body
+                    type: object
+                    properties:
+                      Body:
+                        required:
+                          - SolicitarOficinasResponse
+                        type: object
+                        properties:
+                          SolicitarOficinasResponse:
+                            required:
+                              - item
+                            type: object
+                            properties:
+                              item:
+                                minItems: 1
+                                uniqueItems: true
+                                type: array
+                                items:
+                                  required:
+                                    - codigo
+                                    - defecto
+                                    - descripcion
+                                  type: object
+                                  properties:
+                                    codigo:
+                                      type: number
+                                    defecto:
+                                      type: boolean
+                                    descripcion:
+                                      minLength: 1
+                                      type: string
+            example-1:
+              example:
+                Envelope:
+                  Body:
+                    SolicitarOficinasResponse:
+                      item:
+                        - codigo: 1
+                          defecto: false
+                          descripcion: Oficina Central
+                        - codigo: 2
+                          defecto: false
+                          descripcion: Delegació Territorial a Girona
+                        - codigo: 3
+                          defecto: false
+                          descripcion: Delegació Territorial a Lleida
+                        - codigo: 4
+                          defecto: false
+                          descripcion: Delegació Territorial a Tarragona
+                        - codigo: 50
+                          defecto: false
+                          descripcion: Amposta
+                        - codigo: 5
+                          defecto: false
+                          descripcion: Arenys de Mar
+                        - codigo: 24
+                          defecto: false
+                          descripcion: Balaguer
+                        - codigo: 54
+                          defecto: false
+                          descripcion: Barcelona
+                        - codigo: 61
+                          defecto: false
+                          descripcion: Barcelona
+                        - codigo: 38
+                          defecto: false
+                          descripcion: Berga
+                        - codigo: 666
+                          defecto: false
+                          descripcion: Berga
+                        - codigo: 6
+                          defecto: false
+                          descripcion: Cerdanyola del VallÃ¿s
+                        - codigo: 26
+                          defecto: false
+                          descripcion: Cervera
+                        - codigo: 1313
+                          defecto: false
+                          descripcion: Cervera
+                        - codigo: 37
+                          defecto: false
+                          descripcion: El Vendrell / Coma-ruga
+                        - codigo: 51
+                          defecto: false
+                          descripcion: Esplugues de Llobregat
+                        - codigo: 31
+                          defecto: false
+                          descripcion: Falset
+                        - codigo: 55
+                          defecto: false
+                          descripcion: Figueres
+                        - codigo: 20
+                          defecto: false
+                          descripcion: Figueres
+                        - codigo: 32
+                          defecto: false
+                          descripcion: Gandesa
+                        - codigo: 62
+                          defecto: false
+                          descripcion: Girona
+                        - codigo: 67
+                          defecto: false
+                          descripcion: Granollers
+                        - codigo: 7
+                          defecto: false
+                          descripcion: Granollers
+                        - codigo: 888
+                          defecto: false
+                          descripcion: Igualada
+                        - codigo: 9
+                          defecto: false
+                          descripcion: Igualada
+                        - codigo: 56
+                          defecto: false
+                          descripcion: La Bisbal d'Empordà
+                        - codigo: 19
+                          defecto: false
+                          descripcion: "La Bisbal d'EmpordÃ\_"
+                        - codigo: 27
+                          defecto: false
+                          descripcion: La Seu d'Urgell
+                        - codigo: 93
+                          defecto: false
+                          descripcion: La Seu d'Urgell
+                        - codigo: 25
+                          defecto: false
+                          descripcion: Les Borges Blanques
+                        - codigo: 8
+                          defecto: false
+                          descripcion: L'Hospitalet de Llobregat
+                        - codigo: 777
+                          defecto: false
+                          descripcion: L'Hospitalet de Llobregat
+                        - codigo: 63
+                          defecto: false
+                          descripcion: Lleida
+                        - codigo: 45
+                          defecto: false
+                          descripcion: Lloret de Mar
+                        - codigo: 10
+                          defecto: false
+                          descripcion: Manresa
+                        - codigo: 59
+                          defecto: false
+                          descripcion: Manresa
+                        - codigo: 40
+                          defecto: false
+                          descripcion: Martorell
+                        - codigo: 11
+                          defecto: false
+                          descripcion: MatarÃ³
+                        - codigo: 68
+                          defecto: false
+                          descripcion: Mataró
+                        - codigo: 41
+                          defecto: false
+                          descripcion: Mollet del VallÃ¿s
+                        - codigo: 33
+                          defecto: false
+                          descripcion: Montblanc
+                        - codigo: 1212
+                          defecto: false
+                          descripcion: Móra d'Ebre
+                        - codigo: 222
+                          defecto: false
+                          descripcion: Olot
+                        - codigo: 21
+                          defecto: false
+                          descripcion: Olot
+                        - codigo: 46
+                          defecto: false
+                          descripcion: Palafrugell
+                        - codigo: 47
+                          defecto: false
+                          descripcion: PalamÃ³s
+                        - codigo: 42
+                          defecto: false
+                          descripcion: Pineda de Mar
+                        - codigo: 22
+                          defecto: false
+                          descripcion: "PuigcerdÃ\_"
+                        - codigo: 34
+                          defecto: false
+                          descripcion: Reus
+                        - codigo: 90
+                          defecto: false
+                          descripcion: Reus
+                        - codigo: 1111
+                          defecto: false
+                          descripcion: Ripoll
+                        - codigo: 53
+                          defecto: false
+                          descripcion: Ripoll
+                        - codigo: 48
+                          defecto: false
+                          descripcion: Roses
+                        - codigo: 39
+                          defecto: false
+                          descripcion: RubÃ­
+                        - codigo: 60
+                          defecto: false
+                          descripcion: Sabadell
+                        - codigo: 12
+                          defecto: false
+                          descripcion: Sabadell
+                        - codigo: 15
+                          defecto: false
+                          descripcion: Sant Cugat del VallÃ¿s
+                        - codigo: 49
+                          defecto: false
+                          descripcion: Sant Feliu de GuÃ­xols
+                        - codigo: 13
+                          defecto: false
+                          descripcion: Sant Feliu de Llobregat
+                        - codigo: 94
+                          defecto: false
+                          descripcion: Sant Feliu de Llobregat
+                        - codigo: 43
+                          defecto: false
+                          descripcion: Sant VicenÃ§ dels Horts
+                        - codigo: 57
+                          defecto: false
+                          descripcion: Santa Coloma de Farners
+                        - codigo: 23
+                          defecto: false
+                          descripcion: Santa Coloma de Farners
+                        - codigo: 44
+                          defecto: false
+                          descripcion: Sitges
+                        - codigo: 555
+                          defecto: false
+                          descripcion: Solsona
+                        - codigo: 28
+                          defecto: false
+                          descripcion: Solsona
+                        - codigo: 52
+                          defecto: false
+                          descripcion: Sort
+                        - codigo: 64
+                          defecto: false
+                          descripcion: Tarragona
+                        - codigo: 66
+                          defecto: false
+                          descripcion: Terrassa
+                        - codigo: 14
+                          defecto: false
+                          descripcion: Terrassa
+                        - codigo: 35
+                          defecto: false
+                          descripcion: Tortosa
+                        - codigo: 92
+                          defecto: false
+                          descripcion: Tortosa
+                        - codigo: 29
+                          defecto: false
+                          descripcion: Tremp
+                        - codigo: 444
+                          defecto: false
+                          descripcion: Tremp
+                        - codigo: 36
+                          defecto: false
+                          descripcion: Valls
+                        - codigo: 111
+                          defecto: false
+                          descripcion: Valls
+                        - codigo: 999
+                          defecto: false
+                          descripcion: Vendrell
+                        - codigo: 16
+                          defecto: false
+                          descripcion: Vic
+                        - codigo: 58
+                          defecto: false
+                          descripcion: Vic
+                        - codigo: 333
+                          defecto: false
+                          descripcion: Vielha
+                        - codigo: 30
+                          defecto: false
+                          descripcion: Vielha e Mijaran
+                        - codigo: 17
+                          defecto: false
+                          descripcion: Vilafranca del PenedÃ¿s
+                        - codigo: 69
+                          defecto: false
+                          descripcion: Vilafranca del Penedès
+                        - codigo: 18
+                          defecto: false
+                          descripcion: Vilanova i la GeltrÃº
+                        - codigo: 1010
+                          defecto: false
+                          descripcion: Vilanova i la Geltrú
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900901
+                      message: Invalid Credentials
+                      description: Invalid Credentials. Make sure you have provided the correct security credentials
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                      - nextAccessTime
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+                      nextAccessTime:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900804
+                      message: Message throttled out
+                      description: You have exceeded your quota
+                      nextAccessTime: '2021-Mar-08 11:29:00+0000 UTC'
+      security:
+        - default: []
+      x-wso2-soap:
+        soap-action: ''
+        soap-operation: SolicitarOficinas
+        namespace: 'http://wsgaudi.e-tributs.net/GENTRI_WS'
+        x-soap-version: '1.1'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+          - oauth2
+          - oauth2
+        optional: false
+      x-codegen-request-body-name: Payload
+  /solicitarConceptos:
+    post:
+      tags:
+        - terminis
+      description: Obtenir la llista de conceptes en un idioma determinat.
+      operationId: SolicitarConceptos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/solicitarConceptosInput'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                  - Envelope
+                type: object
+                properties:
+                  Envelope:
+                    required:
+                      - Body
+                    type: object
+                    properties:
+                      Body:
+                        required:
+                          - SolicitarConceptosResponse
+                        type: object
+                        properties:
+                          SolicitarConceptosResponse:
+                            required:
+                              - item
+                            type: object
+                            properties:
+                              item:
+                                minItems: 1
+                                uniqueItems: true
+                                type: array
+                                items:
+                                  required:
+                                    - cod
+                                    - descr
+                                  type: object
+                                  properties:
+                                    cod:
+                                      minLength: 1
+                                      type: string
+                                    defecto:
+                                      type: object
+                                    descr:
+                                      minLength: 1
+                                      type: string
+            example-1:
+              example:
+                Envelope:
+                  Body:
+                    SolicitarConceptosResponse:
+                      item:
+                        - cod: DO
+                          descr: Donacions
+                        - cod: SU
+                          descr: Successions
+                        - cod: TR
+                          descr: Transmissions
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900901
+                      message: Invalid Credentials
+                      description: Invalid Credentials. Make sure you have provided the correct security credentials
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                      - nextAccessTime
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+                      nextAccessTime:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900804
+                      message: Message throttled out
+                      description: You have exceeded your quota
+                      nextAccessTime: '2021-Mar-08 11:29:00+0000 UTC'
+      security:
+        - default: []
+      x-wso2-soap:
+        soap-action: ''
+        soap-operation: SolicitarConceptos
+        namespace: 'http://wsgaudi.e-tributs.net/GENTRI_WS'
+        x-soap-version: '1.1'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+          - oauth2
+          - oauth2
+        optional: false
+      x-codegen-request-body-name: Payload
+  /solicitarCalculodelPlazo:
+    post:
+      tags:
+        - terminis
+      description: Obtenir la finalització de l'termini per presentar l'autoliquidació.
+      operationId: SolicitarCalculodelPlazo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - Envelope
+              type: object
+              properties:
+                Envelope:
+                  required:
+                    - Body
+                  type: object
+                  properties:
+                    Body:
+                      required:
+                        - SolicitarCalculodelPlazo
+                      type: object
+                      properties:
+                        SolicitarCalculodelPlazo:
+                          required:
+                            - concepto
+                            - fechaDevengo
+                            - idOficina
+                          type: object
+                          properties:
+                            concepto:
+                              minLength: 1
+                              type: string
+                              example: DO
+                            fechaDevengo:
+                              minLength: 1
+                              type: string
+                              example: 21/01/2021
+                            idOficina:
+                              type: number
+                              example: 2
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                required:
+                  - Envelope
+                type: object
+                properties:
+                  Envelope:
+                    required:
+                      - Body
+                    type: object
+                    properties:
+                      Body:
+                        required:
+                          - SolicitarCalculodelPlazoResponse
+                        type: object
+                        properties:
+                          SolicitarCalculodelPlazoResponse:
+                            required:
+                              - codError
+                              - descrConcepto
+                              - descrOficina
+                              - fechaPlazo
+                              - numDias
+                              - tipoDias
+                            type: object
+                            properties:
+                              codError:
+                                type: number
+                              descrConcepto:
+                                minLength: 1
+                                type: string
+                              descrOficina:
+                                minLength: 1
+                                type: string
+                              fechaPlazo:
+                                minLength: 1
+                                type: string
+                              numDias:
+                                type: number
+                              tipoDias:
+                                minLength: 1
+                                type: string
+            example-1:
+              example:
+                Envelope:
+                  Body:
+                    SolicitarCalculodelPlazoResponse:
+                      codError: 0
+                      descrConcepto: Donacions
+                      descrOficina: Oficina Central
+                      fechaPlazo: 04/03/2021
+                      numDias: 1
+                      tipoDias: mes hàbil
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900901
+                      message: Invalid Credentials
+                      description: Invalid Credentials. Make sure you have provided the correct security credentials
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                required:
+                  - fault
+                type: object
+                properties:
+                  fault:
+                    required:
+                      - code
+                      - description
+                      - message
+                      - nextAccessTime
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                      message:
+                        minLength: 1
+                        type: string
+                      description:
+                        minLength: 1
+                        type: string
+                      nextAccessTime:
+                        minLength: 1
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    fault:
+                      code: 900804
+                      message: Message throttled out
+                      description: You have exceeded your quota
+                      nextAccessTime: '2021-Mar-08 11:29:00+0000 UTC'
+      security:
+        - default: []
+      x-wso2-soap:
+        soap-action: ''
+        soap-operation: SolicitarCalculodelPlazo
+        namespace: 'http://wsgaudi.e-tributs.net/GENTRI_WS'
+        x-soap-version: '1.1'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+      x-wso2-application-security:
+        security-types:
+          - oauth2
+          - oauth2
+          - oauth2
+        optional: false
+      x-codegen-request-body-name: Payload
+components:
+  schemas:
+    solicitarOficinasInput:
+      type: object
+    solicitarConceptosInput:
+      type: object
+  securitySchemes:
+    default:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: ''
+          scopes: {}
+x-wso2-auth-header: Authorization
+x-wso2-cors:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+    - '*'
+  accessControlAllowCredentials: false
+  accessControlAllowHeaders:
+    - authorization
+    - Access-Control-Allow-Origin
+    - Content-Type
+    - SOAPAction
+    - apikey
+    - testKey
+    - x-atc-mocked
+  accessControlAllowMethods:
+    - GET
+    - PUT
+    - POST
+    - DELETE
+    - PATCH
+    - OPTIONS
+x-wso2-production-endpoints:
+  urls:
+    - 'http://192.168.230.107:8080/gt_web/calculoPlazoPresentacion/GTW00_CalculoPlazoPresentacion.jws'
+  type: address
+x-wso2-sandbox-endpoints:
+  urls:
+    - 'http://am18co7apibus.localdomain:8080/castlemock/mock/soap/project/xdAZ0H/GTW00_CalculoPlazoPresentacionPort'
+  type: address
+x-wso2-basePath: /guadi/sim-terminis/v1
+x-wso2-transports:
+  - http
+  - https
+x-wso2-application-security:
+  security-types:
+    - oauth2
+    - oauth2
+  optional: false
+x-wso2-response-cache:
+  enabled: false
+  cacheTimeoutInSeconds: 300
